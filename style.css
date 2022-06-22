@@ -1,0 +1,110 @@
+body{
+    background-color: darkslategrey;
+}
+h1{
+    color: black;
+    background-color: grey;
+    font-style: unset;
+    border-radius: 1em;
+    font-weight: 600;
+    margin-top: 1em;
+    margin-left: 2em;
+    margin-bottom: 1em;
+    margin-right: 2em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    text-align: center;
+}
+h2{
+    font-style: initial;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+    background-color: aquamarine;
+}
+h3{
+    font-style: normal;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+}
+h4{
+    font-style: normal;
+    font-weight: 600;
+    color: red;
+    text-align: center;
+}
+h5{
+    font-style: normal;
+    font-weight: 200;
+    color: red;
+    text-align: center;
+}
+p{
+    font-style: normal;
+    font-weight: 100;
+    color: white;
+    text-align: center;
+}
+.medium-pizza{
+    
+    border: solid whitesmoke 1em;
+    background-color: rgb(114, 100, 102);
+    margin: 1em;
+}
+.large-pizza{
+    
+    border: solid whitesmoke 1em;
+    background-color: rgb(114, 100, 102);
+    margin: 1em;
+}
+.small-pizza{
+    
+    border: solid whitesmoke 1em;
+    background-color: rgb(114, 100, 102);
+    margin: 1em;
+}
+.footer{
+    background-color: black;
+}
+@media (min-width: 980px){
+    .pizzas{
+        display: flex;
+    }
+}
+img{
+    border-radius: 50%;
+}
+.cartimg{
+    border-radius: 50%;
+    width: 3em;
+}
+.piz{
+    margin-left: 10%;
+    border-radius: 50%;
+}
+.piz1{
+    border-radius: 60%;
+}
+.btn{
+    background-color: aquamarine;
+}
+.btn3{
+    width: 80px;
+    margin-left: 40%;
+}
+table{
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+}
+td{
+    text-align: center;
+    vertical-align: bottom;
+}
+th, td{
+    text-align: center;
+    border: 1px solid black;
+    padding: 15px;
+    background-color: grey;
+}
