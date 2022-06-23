@@ -11,8 +11,11 @@
 </head>
 <body>
     <h1>Pecfect Pizza</h1>
-    <div class="container" x data="{
-        showCart:false
+    <div class="container" x-data="{
+        showCart:false,
+        payNow: false,
+        paymentamount: 0,
+        paymentmessege: '',
         small_pizza_total:0.00,
         spizzaQty:0,
         medium_pizza_total:0.00,
@@ -52,8 +55,38 @@
                 this.lpizzaQty -=1
             }
         },
+        cartTot(){
+            return this.small_pizza_total + this.medium_pizza_total + this.large_pizza_total
+        },
         totalQty(){
             return this.spizzaQty + this.mpizzaQty + this.lpizzaQty
+        },
+        makepayment(){
+            if(!this.paymentamount){
+                this.paymentmessege = 'Noamount enterd!'
+            }else if(this.paymentamount >= this.cartTot()){
+                thispaymentmessege = 'Enjoy your pizza!'
+                setTimeout(() =>{
+                    this.payNow =false;
+                    this.showCart =false;
+                    this.clearCart()
+                }, 5000);
+            }else{
+                this.paymentmessege = 'Sorry - that is not enough money!'
+                setimeout(() =>{
+                    this.payNow =false;
+                    this.showCart =false;
+                    this.clearCart()
+                }, 5000);
+            }
+        },
+        clearCart(){
+            this.small_pizza_total= 0.00;
+            this.spizzaQty= 0;
+            this.medium_pizza_total= 0.00;
+            this.mpizzaQty= 0;
+            this.large_pizza_total= 0.00;
+            this.lpizzaQty= 0;
         }
     }">
     <div class="header">
@@ -61,10 +94,13 @@
             <button class="btn" x-on:click="showCart=true">Shop Cart</button>
             <strong>
                 <div><span x-text="totalqty()"></span>Items in the Cart</div>
-                <div>Total price: R0.00<span x-text="cartTot().toFixed(2)"></span></div>
+                <div>Total price: R<span x-text="cartTot().toFixed(2)"></span></div>
             </strong>
                 
         </div>
+    </div>
+    <div class="box"> Inspired-by-
+        <a href="C:\Users\Given Lee\Desktop\projects\uj-project-pizza\index.html">My Pefect Pizza</a>
     </div>
 
     <div class="cart-box">
@@ -130,16 +166,28 @@
                     </tr>
                     <tr x-show="payNow">
                         <td colspan="2">
-                            <div class="messege">Message goes here</div>
+                            <div class="messege" x-text="paymentmessege">Message goes here</div>
                             <div>
-                                <label for="">Pay Amount</label>
-                                <input class="input" type="number" placeholder="Pay Amount">
+                                <label for="paymentamount">Pay Amount</label>
+                                <input class="input" type="number" placeholder="Pay Amount" x-model="paymentamount">
                             </div>
                             <td>
-                                <button class="btn">
+                                <button class="btn" x-show="!payNow" x-on: click="payNow=true">
                                     <img src="images/cart-image.jpg" width="20" alt="">Pay
                                 </button>
                             </td>
+                            <tr>
+                                <td>
+                                    <button x-on: click="makepayment" class="btn">
+                                        payNow
+                                    </button>
+                                </td>
+                                <td>
+                                    <button x-show="!payNow" x-on: click="payNow=true" class="btn">
+                                        Check Out
+                                    </button>
+                                </td>
+                            </tr>
                         </td>
                     </tr>
                 </table>
@@ -153,7 +201,7 @@
             <div class="medium-pizza">
                 <img class="piz" src="images/download.jpg"alt="">
                <h3>Medium Pizza</h3>
-               <button class="btn3" x-on:click="showCart=false" @click="buymedium-pizza()">Buy</button>
+               <button class="btn3" @click="buymedium_pizza()">Buy</button>
                <h4>R174.00</h4>
                <p>Medium Margherita Pizza with 3 toppings max 
                 2 or less meat topping 
@@ -163,7 +211,7 @@
             <div class="large-pizza">
                 <img class="piz" src="images/download (1).jpg"alt="">
                <h3> Large Pizza</h3>
-               <button class="btn3" @click="buylarge-pizza()">Buy</button>
+               <button class="btn3" @click="buylarge_pizza()">Buy</button>
                <h4>R228.00</h4>
                <p>Large Margherita pizza with 3 toopings max 
                 3 meat tooping max 3 or less other toppings.</p>
